@@ -1,4 +1,9 @@
 # Get data 
+
+data gồm 2 file `action_head.csv` và `jdata_product.csv` được bỏ vào folder `data` được tổ chức như sau:
+![Alt Text](dataimg/fol.png)
+
+
     !wget https://raw.githubusercontent.com/Wang-Yu-Qing/dgl_data/master/eges_data/action_head.csv -P data/
 - user_id,sku_id,action_time,module_id,type
 split by `,`
