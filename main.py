@@ -7,6 +7,7 @@ from sampler import Sampler
 from sklearn import metrics
 from torch.utils.data import DataLoader
 import numpy as np
+import time
 
 
 def train(args, train_g, sku_info, num_skus, num_brands, num_shops, num_cates):
@@ -31,6 +32,7 @@ def train(args, train_g, sku_info, num_skus, num_brands, num_shops, num_cates):
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
 
     for epoch in range(args.epochs):
+        start_time = time.time()
         epoch_total_loss = 0
         for step, (srcs, dsts, labels) in enumerate(dataloader):
             # the batch size of output pairs is unfixed
@@ -50,7 +52,8 @@ def train(args, train_g, sku_info, num_skus, num_brands, num_shops, num_cates):
                         epoch, step, loss.item(), epoch_total_loss / (step + 1)
                     )
                 )
-
+        epoch_time = time.time() - start_time
+        print(f"epoch {epoch} took","{:.4f}".format(epoch_time))
         eval(model, test_g, sku_info)
 
     return model
