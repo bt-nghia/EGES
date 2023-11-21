@@ -6,6 +6,7 @@ from model import EGES
 from sampler import Sampler
 from sklearn import metrics
 from torch.utils.data import DataLoader
+import numpy as np
 
 
 def train(args, train_g, sku_info, num_skus, num_brands, num_shops, num_cates):
@@ -70,7 +71,11 @@ def eval(model, test_graph, sku_info):
 
     fpr, tpr, thresholds = metrics.roc_curve(labels, preds, pos_label=1)
 
+    recall = np.mean(tpr)
+
     print("Evaluate link prediction AUC: {:.4f}".format(metrics.auc(fpr, tpr)))
+    print("Evaluate Recall: {:.4f}".format(recall))
+
 
 
 if __name__ == "__main__":
