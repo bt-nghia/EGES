@@ -53,7 +53,7 @@ def train(args, train_g, sku_info, num_skus, num_brands, num_shops, num_cates):
                     )
                 )
         epoch_time = time.time() - start_time
-        print(f"epoch {epoch} took","{:.4f}".format(epoch_time))
+        print(f"epoch {epoch} took","{:.2f} seconds".format(epoch_time))
         eval(model, test_g, sku_info)
 
     return model
